@@ -409,15 +409,83 @@ h1, h2 {
 .sunnah-table tbody tr:hover td:first-child {
     border-right-color: var(--accent-cyan);
 }
-/* --- التجاوب (Responsive) --- */
-@media (max-width: 1200px) {
-    .live-times-grid { grid-template-columns: repeat(3, 1fr); }
+/* --- إعدادات الشاشات الصغيرة (الجوال والتابلت) --- */
+@media (max-width: 992px) {
+    body {
+        flex-direction: column; /* تحويل الترتيب من أفقي إلى عمودي */
+    }
+
+    /* تحويل السايدبار إلى وضعية الموبايل */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* إلغاء التثبيت الجانبي */
+        right: auto;
+        border-left: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    /* تعديل المحتوى ليأخذ العرض الكامل */
+    .content {
+        margin-right: 0;
+        padding: 20px;
+        width: 100%;
+    }
+
+    /* تعديل شبكة مواقيت الصلاة (تصير صفين بدل صف واحد) */
+    .live-times-grid {
+        grid-template-columns: repeat(2, 1fr); /* كرتين في كل صف */
+        gap: 12px;
+    }
+
+    .time-card {
+        padding: 15px 10px;
+    }
+
+    .time-card span {
+        font-size: 1.1rem;
+    }
+
+    /* جعل بطاقات "منتصف الليل" و "النهي" تأخذ العرض الكامل */
+    .logic-item, .forbidden-card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* تعديل حجم الخط للعناوين الكبيرة */
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .sidebar-titlee {
+        font-size: 1.8rem;
+        padding: 20px 0;
+    }
+
+    /* السماح للجدول بالتحرك يميناً ويساراً لمنع تداخل الكلام */
+    .sunnah-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* حركة سلسة على الآيفون */
+    }
+
+    .sunnah-table {
+        min-width: 450px; /* يمنع انضغاط الجدول بزيادة */
+    }
 }
 
-@media (max-width: 768px) {
-    .sidebar { width: 100%; height: auto; position: relative; border-left: none; border-bottom: 1px solid var(--glass-border); }
-    .content { margin-right: 0; padding: 25px; }
-    .live-times-grid { grid-template-columns: repeat(2, 1fr); }
-    .time-card span { font-size: 1.1rem; }
-    .sidebar-titlee { font-size: 1.8rem; }
+/* تعديل إضافي للشاشات الصغيرة جداً (مثل آيفون SE) */
+@media (max-width: 480px) {
+    .live-times-grid {
+        grid-template-columns: 1fr; /* كرت واحد فقط في الصف لزيادة الوضوح */
+    }
+    
+    .content {
+        padding: 15px;
+    }
+
+    .prayer-name {
+        padding-right: 15px !important; /* تقليل المسافة الجانبية في الجدول */
+    }
 }
