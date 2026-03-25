@@ -411,117 +411,86 @@ h1, h2 {
 }
 
 
-/* --- إعدادات الشاشات الصغيرة (الجوال والتابلت) --- */
+/* --- إعدادات الشاشات الصغيرة (الجوال والتابلت) - إجبار الوضع الجانبي --- */
 @media (max-width: 992px) {
     body {
-        flex-direction: column; /* تحويل الترتيب من أفقي إلى عمودي */
+        flex-direction: row; /* إجبار الترتيب الأفقي مثل اللابتوب */
+        align-items: flex-start;
     }
 
-    /* تحويل السايدبار إلى وضعية الموبايل */
+    /* تثبيت السايدبار وتصغيره */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative; /* إلغاء التثبيت الجانبي */
-        right: auto;
-        border-left: none;
-        border-bottom: 1px solid var(--glass-border);
-        padding: 15px;
-        backdrop-filter: blur(10px);
+        width: 30%; /* السايدبار ياخذ 30% فقط من الشاشة */
+        position: sticky; 
+        top: 0;
+        height: 100vh;
+        overflow-y: auto; /* عشان تقدر تنزل بالقائمة إذا كانت طويلة */
+        padding: 10px 5px;
+        border-bottom: none;
     }
 
-    /* تعديل المحتوى ليأخذ العرض الكامل */
+    /* تصغير خطوط السايدبار عشان توسع المساحة الضيقة */
+    .sidebar-titlee {
+        font-size: 1.2rem;
+        padding: 10px 0;
+    }
+    .sidebar a {
+        font-size: 0.8rem;
+    }
+
+    /* تعديل المحتوى ليأخذ باقي الشاشة */
     .content {
+        width: 70%; /* المحتوى ياخذ 70% */
         margin-right: 0;
-        padding: 20px;
-        width: 100%;
+        padding: 10px;
     }
 	
-	/* --- تعديل بطاقات النهي للموبايل --- */
+    /* --- تصغير عام لتفادي العجقة --- */
     .forbidden-card, .forbidden-card.mghlth {
-        padding: 15px 20px; /* تقليل الفراغات الداخلية */
-        font-size: 0.9rem;   /* تصغير الخط قليلاً ليناسب العرض */
-        line-height: 1.6;
-        display: flex;
-        flex-direction: column; /* جعل النص والوقت فوق بعض إذا لزم الأمر */
-        gap: 8px;
-        border-right-width: 4px; /* تنحيف الخط الجانبي قليلاً */
+        padding: 10px; 
+        font-size: 0.75rem; /* تصغير الخط بقوة */
+        line-height: 1.4;
     }
 
-    /* إلغاء تأثير الـ TranslateX في الموبايل عشان ما تطلع البطاقة بره الشاشة */
-    .forbidden-card:hover, .forbidden-card.mghlth:hover {
-        transform: translateY(-3px); 
-    }
-
-    /* --- تعديل صندوق الأحاديث للموبايل --- */
     .hadith-box {
-        padding: 20px 15px; /* مساحة أقل من الجوانب */
-        margin: 25px 0;
-        font-size: 0.95rem;
-        line-height: 1.8;
-        border-right-width: 4px; /* تناسق مع بطاقات النهي */
-        text-align: justify; /* توزيع النص بشكل متساوٍ */
+        padding: 10px; 
+        margin: 15px 0;
+        font-size: 0.8rem;
     }
 
-    /* تنسيق أرقام الوقت داخل بطاقات النهي في الموبايل */
-    .forbidden-card span {
-        display: block;
-        color: var(--accent-cyan);
-        font-weight: bold;
-        font-size: 1rem;
-    }
-
-    /* تعديل شبكة مواقيت الصلاة (تصير صفين بدل صف واحد) */
+    /* شبكة مواقيت الصلاة لازم تصير عمودية بالكامل لأن العرض صار صغير جداً للمحتوى */
     .live-times-grid {
-        grid-template-columns: repeat(2, 1fr); /* كرتين في كل صف */
-        gap: 12px;
+        grid-template-columns: 1fr; /* كرت واحد بالصف */
+        gap: 8px;
     }
 
     .time-card {
-        padding: 15px 10px;
+        padding: 10px;
     }
 
     .time-card span {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
-    /* جعل بطاقات "منتصف الليل" و "النهي" تأخذ العرض الكامل */
-    .logic-item, .forbidden-card {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    /* تعديل حجم الخط للعناوين الكبيرة */
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.2rem;
     }
     
-    .sidebar-titlee {
-        font-size: 1.8rem;
-        padding: 20px 0;
+    h2 {
+        font-size: 1rem;
     }
 
-    /* السماح للجدول بالتحرك يميناً ويساراً لمنع تداخل الكلام */
     .sunnah-table-container {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* حركة سلسة على الآيفون */
-    }
-
-    .sunnah-table {
-        min-width: 450px; /* يمنع انضغاط الجدول بزيادة */
     }
 }
 
-/* تعديل إضافي للشاشات الصغيرة جداً (مثل آيفون SE) */
+/* إعدادات إضافية للشاشات الأصغر */
 @media (max-width: 480px) {
-    .live-times-grid {
-        grid-template-columns: 1fr; /* كرت واحد فقط في الصف لزيادة الوضوح */
+    .sidebar {
+        width: 35%; /* زيادة بسيطة للسايدبار في الشاشات الصغيرة جداً عشان يظل مقروء */
     }
-    
     .content {
-        padding: 15px;
-    }
-
-    .prayer-name {
-        padding-right: 15px !important; /* تقليل المسافة الجانبية في الجدول */
+        width: 65%;
     }
 }
