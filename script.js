@@ -1,4 +1,21 @@
-// 1. دالة التنسيق AM/PM
+const backToTopBtn = document.getElementById("backToTop");
+
+// إظهار الزر عند النزول 400 بكسل
+window.onscroll = function() {
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        backToTopBtn.style.display = "flex";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+};
+
+// وظيفة الرجوع للأعلى بسلاسة عند الضغط
+backToTopBtn.onclick = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+};// 1. دالة التنسيق AM/PM
 function formatTime12(time24) {
     if (!time24) return "-";
     let [hours, minutes] = time24.split(':');
@@ -158,7 +175,7 @@ function startPrayerWatch(finalTimes) {
                 timerSpan.style.color = "#ff4d4d"; // لون أحمر للتنبيه بقرب الإقامة
             }
         } else {
-            notifText.innerText = `باقي على صلاة ${nextPrayerName}`;
+            notifText.innerText = `باقي على ${nextPrayerName}`;
             if(iqamaDiv) {
                 iqamaDiv.style.display = 'block';
                 timerSpan.innerText = formatDisplay(nextPrayerSec);

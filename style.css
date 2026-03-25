@@ -409,6 +409,8 @@ h1, h2 {
 .sunnah-table tbody tr:hover td:first-child {
     border-right-color: var(--accent-cyan);
 }
+
+
 /* --- إعدادات الشاشات الصغيرة (الجوال والتابلت) --- */
 @media (max-width: 992px) {
     body {
